@@ -1,2 +1,2 @@
-knowman-alpha
-=============
+Knowlege Manager Alpha
+======================
