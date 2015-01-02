@@ -1,0 +1,4 @@
+services:
+#    landreg_knowman.example:
+#        class: Landreg\Bundle\KnowmanBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

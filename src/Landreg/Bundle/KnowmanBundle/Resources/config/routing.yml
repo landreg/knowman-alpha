@@ -1,0 +1,3 @@
+landreg_knowman_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: LandregKnowmanBundle:Default:index }
