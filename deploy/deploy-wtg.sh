@@ -45,8 +45,8 @@ cd $DESTPATH && ln -s $VENDOR_PATH vendor && composer -vvv install
 # Make sure the web server can write to it
 chmod -R 775 $DESTPATH/app/cache
 chmod -R 775 $DESTPATH/app/logs
-chgrp $APACHE_GROUP $DESTPATH
-chgrp $APACHE_GROUP $VENDOR_PATH
+chgrp -R $APACHE_GROUP $DESTPATH
+chgrp -R $APACHE_GROUP $VENDOR_PATH
 
 # Update symlink to new source
 cd $CURRENT_SYM_PATH && ln -sfn $DESTPATH current
