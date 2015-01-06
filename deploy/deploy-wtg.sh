@@ -46,7 +46,7 @@ cd $DESTPATH && ln -s $VENDOR_PATH vendor && composer -vvv install
 chmod -R 775 $DESTPATH/app/cache
 chmod -R 775 $DESTPATH/app/logs
 chgrp -R $APACHE_GROUP $DESTPATH
-chgrp -R $APACHE_GROUP $VENDOR_PATH
+chgrp -R $APACHE_GROUP $DEST/build
 
 # Update symlink to new source
 cd $CURRENT_SYM_PATH && ln -sfn $DESTPATH current
