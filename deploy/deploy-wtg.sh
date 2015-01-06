@@ -47,6 +47,7 @@ cd $DESTPATH && make source && make assets
 
 # Make sure the web server can write to it
 chmod -R 775 $DESTPATH/app/cache
+chmod -x $DESTPATH/deploy/deploy-wtg.sh
 chmod -R 775 $DESTPATH/app/logs
 chgrp -R $APACHE_GROUP $DESTPATH
 chgrp -R $APACHE_GROUP $DEST/build

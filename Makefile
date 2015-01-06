@@ -1,5 +1,5 @@
 source:
-	composer -vv install
+	composer -vvv install
 
 init:
 	app/console doctrine:database:create
