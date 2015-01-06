@@ -39,8 +39,11 @@ mkdir -p $DESTPATH/app/logs && chgrp $APACHE_GROUP $DESTPATH/app/logs && chmod g
 chmod +x $DESTPATH/app/console
 
 
-# Set the vendor directory to be a symlink and run composer install
-cd $DESTPATH && ln -s $VENDOR_PATH vendor && composer -vvv install
+# Set the vendor directory to be a symlink
+cd $DESTPATH && ln -s $VENDOR_PATH vendor
+
+# update composer and genterate assets composer install
+cd $DESTPATH && make source && make assets
 
 # Make sure the web server can write to it
 chmod -R 775 $DESTPATH/app/cache
