@@ -45,12 +45,15 @@ cd $DESTPATH && ln -s $VENDOR_PATH vendor
 # update composer and genterate assets composer install
 cd $DESTPATH && make source && make assets
 
-# Make sure the web server can write to it
+# Make sure the web server can write to the dirs it needs
 chmod -R 775 $DESTPATH/app/cache
-chmod -x $DESTPATH/deploy/deploy-wtg.sh
 chmod -R 775 $DESTPATH/app/logs
 chgrp -R $APACHE_GROUP $DESTPATH
 chgrp -R $APACHE_GROUP $DEST/build
+
+# Make sure this script is executable
+chmod +x $DESTPATH/deploy/deploy-wtg.sh
+
 
 # Update symlink to new source
 cd $CURRENT_SYM_PATH && ln -sfn $DESTPATH current
