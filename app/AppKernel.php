@@ -38,8 +38,14 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
 
             // Remove this Bundle when using the SE as the basis for a new project
-            // new Acme\DemoBundle\AcmeDemoBundle(),
             new Landreg\Bundle\KnowmanBundle\LandregKnowmanBundle(),
+
+
+            new Sonata\AdminBundle\SonataAdminBundle(),
+
+            new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
+            new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

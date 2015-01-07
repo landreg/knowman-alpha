@@ -31,7 +31,9 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "nelmio/alice": "~1.0"
+        "nelmio/alice": "~1.0",
+        "sonata-project/doctrine-phpcr-admin-bundle": "~1.2",
+        "sonata-project/admin-bundle": "~2.3"
     },
     "require-dev": {
         "liip/functional-test-bundle": "~1.0",

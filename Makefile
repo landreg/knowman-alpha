@@ -8,7 +8,7 @@ init:
 	make assets
 
 assets:
-	app/console assets:install
+	app/console assets:install --symlink
 	app/console assetic:dump --env=dev
 	app/console assetic:dump --env=prod
 	make fix-permissions
