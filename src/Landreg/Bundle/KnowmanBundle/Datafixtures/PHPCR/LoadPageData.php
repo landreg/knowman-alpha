@@ -29,7 +29,7 @@ class LoadPageData implements FixtureInterface, OrderedFixtureInterface
         $page->setTitle('Another new Page');
         $page->setBody('I have added this page myself!');
         // get root document (/cms/simple)
-        $simpleCmsRoot = $documentManager->find(null, '/cms/simple');
+        $simpleCmsRoot = $documentManager->find(null, '/knowman/simple');
 
         $page->setParentDocument($simpleCmsRoot); // set the parent to the root
 

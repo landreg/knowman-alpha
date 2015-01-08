@@ -76,9 +76,10 @@ doctrine_cache:
 # Cmf Configuration
 cmf_core:
     persistence:
-        phpcr: true
-        # if you want another basepath
-        # basepath: /custom/basepath
+        phpcr:
+            enabled: true
+            # if you want another basepath
+            basepath: "/knowman"
     publish_workflow: false
 
 # Cmf Routing Configuration
@@ -98,6 +99,16 @@ sonata_admin:
         blocks:
             - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
             - { position: right, type: sonata.admin.block.admin_list }
+        groups:
+            acme.admin.group.content:
+                label: landreg.admin.group.content
+                label_catalogue: LandregKnowmanBundle
+                items:
+                    - langreg.knowman.admin.topic
+                    - langreg.knowman.admin.content_item
+    title: Knowman Admin
+    title_logo: bundles/landregknowman/logo_title.png
+
 
 sonata_doctrine_phpcr_admin:
     document_tree_defaults: [locale]
@@ -105,6 +116,16 @@ sonata_doctrine_phpcr_admin:
         Doctrine\ODM\PHPCR\Document\Generic:
             valid_children:
                 - all
+        Symfony\Cmf\Bundle\SimpleCmsBundle\Doctrine\Phpcr\Page:
+            valid_children:
+                - all
+        Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent:
+            valid_children:
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ReferenceBlock
+                - Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ActionBlock
+
 
 sonata_block:
     default_contexts: [cms]
@@ -129,5 +150,4 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
 

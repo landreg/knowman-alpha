@@ -27,12 +27,12 @@ class LoadDemoData implements FixtureInterface
         }
 
         // tweak homepage
-        $page = $manager->find(null, '/cms/simple');
+        $page = $manager->find(null, '/knowman/simple');
         $page->setBody('Hello');
         $page->setDefault('_template', 'AcmeDemoBundle::home.html.twig');
 
         // add menu item for home
-        $menuRoot = $manager->find(null, '/cms/simple');
+        $menuRoot = $manager->find(null, '/knowman/simple');
         $homeMenuNode = new MenuNode('home');
         $homeMenuNode->setLabel('Home');
         $homeMenuNode->setParentDocument($menuRoot);
@@ -52,7 +52,7 @@ class LoadDemoData implements FixtureInterface
 //        $manager->persist($loginMenuNode);
 
         // load the blocks
-        NodeHelper::createPath($manager->getPhpcrSession(), '/cms/content/blocks');
+        NodeHelper::createPath($manager->getPhpcrSession(), '/knowman/content/blocks');
         Fixtures::load(array(__DIR__.'/../../Resources/data/blocks.yml'), $manager);
 
         // save the changes
