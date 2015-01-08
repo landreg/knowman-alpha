@@ -12,6 +12,7 @@
 /vendor/
 /bin/
 /composer.phar
+.idea/
 *.sqlite
 app/check.php
 app/SymfonyRequirements.php
