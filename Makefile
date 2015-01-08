@@ -2,19 +2,23 @@ source:
 	composer -vvv install
 
 init:
-	app/console doctrine:database:create
-	app/console doctrine:phpcr:init:dbal
+	php app/console doctrine:database:create
+	php app/console doctrine:phpcr:init:dbal
 	make fixtures
 	make assets
 
 fixtures:
 	rm -rf app/cache
-	app/console doctrine:phpcr:repository:init
+	php app/console doctrine:database:drop --force
+	php app/console doctrine:database:create
+	php app/console doctrine:phpcr:init:dbal
+	php app/console doctrine:phpcr:repository:init
+	php app/console doctrine:phpcr:fixtures:load
 
 assets:
-	app/console assets:install --symlink
-	app/console assetic:dump --env=dev
-	app/console assetic:dump --env=prod
+	php app/console assets:install --symlink
+	php app/console assetic:dump --env=dev
+	php app/console assetic:dump --env=prod
 	make fix-permissions
 
 fix-permissions:
@@ -28,5 +32,5 @@ install:
 
 reset:
 	make source
-	app/console doctrine:database:drop --force
+	php app/console doctrine:database:drop --force
 	make init
