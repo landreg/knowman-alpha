@@ -18,7 +18,8 @@ class ItemAdmin extends Admin {
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))        ;
+            ))
+        ;
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -53,7 +54,5 @@ class ItemAdmin extends Admin {
     {
         return array();
     }
-
-
 }
 
