@@ -22,5 +22,5 @@ cd $CURRENT_SYM_PATH && make $1
 # Make sure the web server can write to the dirs it needs
 chmod -R 775 ${CURRENT_SYM_PATH}/app/cache
 chmod -R 775 ${CURRENT_SYM_PATH}/app/logs
-chgrp -R ${APACHE_GROUP} ${CURRENT_SYM_PATH
+chgrp -R ${APACHE_GROUP} ${CURRENT_SYM_PATH}
 
