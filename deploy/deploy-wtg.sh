@@ -53,6 +53,7 @@ chgrp -R $APACHE_GROUP $DEST/build
 
 # Make sure this script is executable
 chmod +x $DESTPATH/deploy/deploy-wtg.sh
+chmod +x $DESTPATH/deploy/run-make.sh
 
 
 # Update symlink to new source
