@@ -26,19 +26,6 @@ class Item implements PublishableInterface
      */
     protected $body;
 
-
-    /**
-     * @var \DateTime
-     * @PHPCR\Date()
-     */
-    protected $publishStartDate;
-
-    /**
-     * @var \DateTime
-     * @PHPCR\Date()
-     */
-    protected $publishEndDate;
-
     /**
      * @var boolean
      * @PHPCR\Boolean()
@@ -128,7 +115,7 @@ class Item implements PublishableInterface
      */
     public function setPublishable($publishable)
     {
-        // TODO: Implement setPublishable() method.
+        $this->publishable = $publishable;
     }
 
     /**
@@ -141,7 +128,7 @@ class Item implements PublishableInterface
      */
     public function isPublishable()
     {
-        // TODO: Implement isPublishable() method.
+        return $this->publishable;
     }
 
 
