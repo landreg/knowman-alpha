@@ -4,6 +4,7 @@ namespace Landreg\Bundle\KnowmanBundle\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
 class ItemAdmin extends Admin {
@@ -38,6 +39,14 @@ class ItemAdmin extends Admin {
     {
         $datagridMapper->add('title', 'doctrine_phpcr_string');
         $datagridMapper->add('body', 'doctrine_phpcr_string');
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('title')
+            ->add('body')
+        ;
     }
 
     public function getExportFormats()
