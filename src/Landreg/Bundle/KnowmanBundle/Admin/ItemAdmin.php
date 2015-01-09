@@ -11,7 +11,6 @@ class ItemAdmin extends Admin {
     {
         $listMapper
             ->addIdentifier('title', 'text')
-            ->addIdentifier('title', 'text')
         ;
     }
 
