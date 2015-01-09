@@ -6,10 +6,11 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
-class PageAdmin extends Admin {
+class ItemAdmin extends Admin {
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('title', 'text')
             ->addIdentifier('title', 'text')
         ;
     }
@@ -17,25 +18,28 @@ class PageAdmin extends Admin {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('form.group_general')
             ->add('title', 'text')
-            ->add('content', 'textarea')
+            ->add('body', 'textarea', array('required' => false))
             ->end();
     }
 
     public function prePersist($document)
     {
-        $parent = $this->getModelManager()->find(null, '/cms/pages');
+        $parent = $this->getModelManager()->find(null, '/knowman/item');
         $document->setParentDocument($parent);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper->add('title', 'doctrine_phpcr_string');
+        $datagridMapper->add('body', 'doctrine_phpcr_string');
     }
 
     public function getExportFormats()
     {
         return array();
     }
+
+
 }
+

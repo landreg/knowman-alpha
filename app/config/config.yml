@@ -97,14 +97,13 @@ knp_menu:
 sonata_admin:
     dashboard:
         blocks:
-            - { position: left, type: sonata_admin_doctrine_phpcr.tree_block }
-            - { position: right, type: sonata.admin.block.admin_list }
+            - { position: left, type: sonata.admin.block.admin_list }
+#            - { position: top, type: sonata_admin_doctrine_phpcr.tree_block }
         groups:
-            acme.admin.group.content:
-                label: landreg.admin.group.content
+            landreg.knowman.admin.group.content:
+                label: Manage Content
                 label_catalogue: LandregKnowmanBundle
                 items:
-                    - langreg.knowman.admin.topic
                     - langreg.knowman.admin.content_item
     title: Knowman Admin
     title_logo: bundles/landregknowman/logo_title.png
