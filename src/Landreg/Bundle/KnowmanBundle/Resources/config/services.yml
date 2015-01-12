@@ -14,7 +14,7 @@ services:
         class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
         arguments:
             - "Landreg Knowman Basepaths"
-            - [ "/knowman/item"]
+            - [ "/knowman/item", "/knowman/topic"]
             - ~
         tags:
             - { name: "doctrine_phpcr.initializer" }
