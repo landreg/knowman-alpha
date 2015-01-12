@@ -4,6 +4,7 @@ namespace Landreg\Bundle\KnowmanBundle\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
@@ -17,6 +18,7 @@ class ItemAdmin extends Admin {
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
+                    'preview' => array('template' => 'LandregKnowmanBundle:CRUD:list__action_preview.html.twig'),
                 )
             ))
         ;
@@ -53,6 +55,13 @@ class ItemAdmin extends Admin {
     public function getExportFormats()
     {
         return array();
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        var_dump($this->getRouterIdParameter());
+        $collection->add('preview', $this->getRouterIdParameter().'/preview', array(), array('id' => '.+'), array('expose'=>true));
+        parent::configureRoutes($collection);
     }
 }
 

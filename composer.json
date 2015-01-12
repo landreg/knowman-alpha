@@ -37,7 +37,8 @@
     },
     "require-dev": {
         "liip/functional-test-bundle": "~1.0",
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "phpspec/phpspec": "~2.1"
     },
     "scripts": {
         "post-install-cmd": [
