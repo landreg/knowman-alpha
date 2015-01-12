@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [CmfCreateBundle]
+    bundles:        [CmfCreateBundle, LandregKnowmanBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -107,7 +107,8 @@ sonata_admin:
                     - langreg.knowman.admin.content_item
     title: Knowman Admin
     title_logo: bundles/landregknowman/logo_title.png
-
+    templates:
+        layout: LandregKnowmanBundle:Admin:standard_layout.html.twig
 
 sonata_doctrine_phpcr_admin:
     document_tree_defaults: [locale]
@@ -149,4 +150,3 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
