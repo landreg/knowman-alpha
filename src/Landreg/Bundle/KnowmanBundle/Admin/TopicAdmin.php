@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
-class ItemAdmin extends Admin {
+class TopicAdmin extends Admin {
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -34,7 +34,7 @@ class ItemAdmin extends Admin {
 
     public function prePersist($document)
     {
-        $parent = $this->getModelManager()->find(null, '/knowman/item');
+        $parent = $this->getModelManager()->find(null, '/knowman/topic');
         $document->setParentDocument($parent);
     }
 
