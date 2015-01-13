@@ -59,7 +59,6 @@ class TopicAdmin extends Admin {
 
     protected function configureRoutes(RouteCollection $collection)
     {
-        var_dump($this->getRouterIdParameter());
         $collection->add('preview', $this->getRouterIdParameter().'/preview', array(), array('id' => '.+'), array('expose'=>true));
         parent::configureRoutes($collection);
     }
