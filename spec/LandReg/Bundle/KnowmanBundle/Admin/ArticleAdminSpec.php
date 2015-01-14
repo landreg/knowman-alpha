@@ -10,7 +10,6 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class ArticleAdminSpec extends ObjectBehavior
 {
-
     function let($code, $class, $baseControllerName)
     {
         $this->beConstructedWith($code, $class, $baseControllerName);
@@ -19,6 +18,7 @@ class ArticleAdminSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('LandReg\Bundle\KnowmanBundle\Admin\ArticleAdmin');
+        $this->shouldHaveType('LandReg\Bundle\KnowmanBundle\Admin\BaseContentAdmin');
     }
 
     function it_sets_the_right_path(Article $document, ModelManagerInterface $modelManager)

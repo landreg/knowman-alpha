@@ -1,10 +1,10 @@
 <?php
-namespace Landreg\Bundle\KnowmanBundle\Admin;
 
+namespace Landreg\Bundle\KnowmanBundle\Admin;
 
 use Sonata\AdminBundle\Form\FormMapper;
 
-class ArticleAdmin extends BaseContentAdmin
+class ItemAdmin extends BaseContentAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -12,9 +12,8 @@ class ArticleAdmin extends BaseContentAdmin
             ->add('title', 'text')
             ->add('body', 'textarea', array(
                 'required' => false,
-                'attr' => array('rows' => 41),
+                'attr' => array('rows' => 10),
             ))
             ->end();
     }
 }
-
