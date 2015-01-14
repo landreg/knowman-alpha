@@ -11,7 +11,13 @@ class ItemAdmin extends Admin {
     {
         $listMapper
             ->addIdentifier('title', 'text')
-        ;
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))        ;
     }
 
     protected function configureFormFields(FormMapper $formMapper)
