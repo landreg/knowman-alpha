@@ -27,4 +27,10 @@ class ArticleAdminSpec extends ObjectBehavior
         $document->setParentDocument(Argument::any())->shouldBeCalled();
         $this->prePersist($document);
     }
+
+    function it_has_a_preview_template()
+    {
+        $this->getTemplate('preview')->shouldReturn("LandregKnowmanBundle:Article:article.html.twig");
+    }
+
 }

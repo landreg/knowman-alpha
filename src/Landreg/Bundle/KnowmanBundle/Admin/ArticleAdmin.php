@@ -9,6 +9,9 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
 class ArticleAdmin extends Admin {
+
+    protected $supportsPreviewMode = true;
+
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -62,5 +65,18 @@ class ArticleAdmin extends Admin {
         $collection->add('preview', $this->getRouterIdParameter().'/preview', array(), array('id' => '.+'), array('expose'=>true));
         parent::configureRoutes($collection);
     }
+
+    public function getTemplate($name)
+    {
+        switch ($name) {
+            case 'preview':
+                return 'LandregKnowmanBundle:Article:article.html.twig';
+                break;
+            default:
+                return parent::getTemplate($name);
+                break;
+        }
+    }
+
 }
 
