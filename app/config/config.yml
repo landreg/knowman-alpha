@@ -80,7 +80,11 @@ cmf_core:
             enabled: true
             # if you want another basepath
             basepath: "/knowman"
-    publish_workflow: false
+    publish_workflow:
+        enabled:                 true
+        checker_service:         cmf_core.publish_workflow.checker.default
+        view_non_published_role: ROLE_CAN_VIEW_NON_PUBLISHED
+        request_listener:        true
 
 # Cmf Routing Configuration
 cmf_routing:
@@ -109,6 +113,10 @@ sonata_admin:
     title_logo: bundles/landregknowman/logo_title.png
     templates:
         layout: LandregKnowmanBundle:Admin:standard_layout.html.twig
+    extensions:
+        cmf_core.admin_extension.publish_workflow.publishable:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface
 
 sonata_doctrine_phpcr_admin:
     document_tree_defaults: [locale]

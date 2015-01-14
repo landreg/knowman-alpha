@@ -5,6 +5,7 @@ namespace Landreg\Bundle\KnowmanBundle\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
+use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableReadInterface;
 
 /**
  * @PHPCR\Document()
@@ -30,7 +31,7 @@ class Article implements PublishableInterface
      * @var boolean
      * @PHPCR\Boolean()
      */
-    protected $publishable = true;
+    protected $publishable = false;
 
 
     /**
