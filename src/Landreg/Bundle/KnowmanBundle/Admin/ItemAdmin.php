@@ -17,7 +17,8 @@ class ItemAdmin extends Admin {
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
-                )
+                ),
+                'label' => 'Options'
             ))
         ;
     }
