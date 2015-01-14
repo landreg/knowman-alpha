@@ -19,7 +19,8 @@ class TopicAdmin extends Admin {
                     'edit' => array(),
                     'delete' => array(),
                     'preview' => array('template' => 'LandregKnowmanBundle:CRUD:list__action_preview.html.twig'),
-                )
+                ),
+                'label' => 'Options'
             ))
         ;
     }
