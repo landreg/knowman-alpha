@@ -23,7 +23,7 @@ class CRUDController extends Controller {
 
         $this->admin->setSubject($object);
 
-        return $this->render("LandregKnowmanBundle:Topic:topic.html.twig", array(
+        return $this->render("LandregKnowmanBundle:Article:article.html.twig", array(
             'action'   => 'show',
             'object'   => $object,
             'elements' => $this->admin->getShow(),

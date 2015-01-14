@@ -8,17 +8,16 @@ use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
-class TopicAdmin extends Admin {
+class ArticleAdmin extends Admin {
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->addIdentifier('title', 'text')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
+                    'preview' => array('template' => 'LandregKnowmanBundle:CRUD:list__action_preview.html.twig'),
                     'edit' => array(),
                     'delete' => array(),
-                    'preview' => array('template' => 'LandregKnowmanBundle:CRUD:list__action_preview.html.twig'),
                 ),
                 'label' => 'Options'
             ))
@@ -35,7 +34,7 @@ class TopicAdmin extends Admin {
 
     public function prePersist($document)
     {
-        $parent = $this->getModelManager()->find(null, '/knowman/topic');
+        $parent = $this->getModelManager()->find(null, '/knowman/article');
         $document->setParentDocument($parent);
     }
 

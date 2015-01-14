@@ -9,7 +9,7 @@ use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
 /**
  * @PHPCR\Document()
  */
-class Topic implements PublishableInterface
+class Article implements PublishableInterface
 {
     /**
      * @PHPCR\Id()
@@ -105,7 +105,7 @@ class Topic implements PublishableInterface
 
     public function __toString()
     {
-        return isset($this->title) ? $this->title : "Topic";
+        return isset($this->title) ? $this->title : "Article";
     }
 
     /**

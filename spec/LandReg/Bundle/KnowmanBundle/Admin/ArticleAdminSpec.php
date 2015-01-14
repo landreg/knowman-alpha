@@ -2,13 +2,13 @@
 
 namespace spec\LandReg\Bundle\KnowmanBundle\Admin;
 
-use Landreg\Bundle\KnowmanBundle\Document\Topic;
+use Landreg\Bundle\KnowmanBundle\Document\Article;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sonata\AdminBundle\Model\ModelManagerInterface;
 use Sonata\AdminBundle\Route\RouteCollection;
 
-class TopicAdminSpec extends ObjectBehavior
+class ArticleAdminSpec extends ObjectBehavior
 {
 
     function let($code, $class, $baseControllerName)
@@ -18,10 +18,10 @@ class TopicAdminSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('LandReg\Bundle\KnowmanBundle\Admin\TopicAdmin');
+        $this->shouldHaveType('LandReg\Bundle\KnowmanBundle\Admin\ArticleAdmin');
     }
 
-    function it_sets_the_right_path(Topic $document, ModelManagerInterface $modelManager)
+    function it_sets_the_right_path(Article $document, ModelManagerInterface $modelManager)
     {
         $this->setModelManager($modelManager);
         $document->setParentDocument(Argument::any())->shouldBeCalled();

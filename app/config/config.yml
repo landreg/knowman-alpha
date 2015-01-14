@@ -104,7 +104,7 @@ sonata_admin:
                 label: Manage Content
                 label_catalogue: LandregKnowmanBundle
                 items:
-                    - langreg.knowman.admin.content_topic
+                    - langreg.knowman.admin.content_article
     title: Knowman Admin
     title_logo: bundles/landregknowman/logo_title.png
     templates:
