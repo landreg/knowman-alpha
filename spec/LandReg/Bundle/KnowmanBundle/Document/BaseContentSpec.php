@@ -11,7 +11,6 @@ class BaseContentSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Landreg\Bundle\KnowmanBundle\Document\BaseContent');
-        $this->shouldImplement('Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface');
     }
 
 

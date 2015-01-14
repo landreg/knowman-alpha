@@ -11,6 +11,7 @@ class ArticleSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Landreg\Bundle\KnowmanBundle\Document\Article');
         $this->shouldHaveType('Landreg\Bundle\KnowmanBundle\Document\BaseContent');
+        $this->shouldImplement('Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface');
     }
 
     function it_should_have_a_title() {
