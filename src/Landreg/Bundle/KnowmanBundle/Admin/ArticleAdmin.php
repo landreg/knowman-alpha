@@ -15,10 +15,11 @@ class ArticleAdmin extends Admin {
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title', 'text')
+            ->addIdentifier('title', 'text',array(
+                'route' => array('name' => 'show'),
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'preview' => array('template' => 'LandregKnowmanBundle:CRUD:list__action_preview.html.twig'),
                     'edit' => array(),
                     'delete' => array(),
                 ),
@@ -70,7 +71,10 @@ class ArticleAdmin extends Admin {
     {
         switch ($name) {
             case 'preview':
-                return 'LandregKnowmanBundle:Article:article.html.twig';
+                return 'LandregKnowmanBundle:Admin/Article:front-facade.html.twig';
+                break;
+            case 'show':
+                return 'LandregKnowmanBundle:Admin/Article:show.html.twig';
                 break;
             default:
                 return parent::getTemplate($name);

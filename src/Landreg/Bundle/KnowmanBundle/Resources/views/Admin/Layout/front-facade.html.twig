@@ -4,8 +4,6 @@
 
 {% use 'SonataAdminBundle:CRUD:base_edit_form.html.twig' with form as parentForm %}
 
-
-
 {% block stylesheets %}
     {{ parent() }}
     {% include "CmfCreateBundle::includecssfiles.html.twig" %}
@@ -48,9 +46,9 @@
                     </table>
                 {% endfor %}
             </div>
-
+        {% endblock %}
+        {% block previewForm %}
             {{ block('parentForm') }}
-
         {% endblock %}
     {% endblock %}
 {% endblock %}
