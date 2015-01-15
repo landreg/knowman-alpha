@@ -71,7 +71,7 @@ class ArticleAdmin extends Admin {
     {
         switch ($name) {
             case 'preview':
-                return 'LandregKnowmanBundle:Admin/Article:front-facade.html.twig';
+                return 'LandregKnowmanBundle:Admin/Article:preview.html.twig';
                 break;
             case 'show':
                 return 'LandregKnowmanBundle:Admin/Article:show.html.twig';
