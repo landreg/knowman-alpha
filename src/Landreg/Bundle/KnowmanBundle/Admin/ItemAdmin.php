@@ -10,6 +10,8 @@ use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
 class ItemAdmin extends Admin
 {
+    protected $supportsPreviewMode = true;
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -17,6 +19,11 @@ class ItemAdmin extends Admin
             ->add('body', 'textarea', array(
                 'required' => false,
                 'attr' => array('rows' => 10),
+            ))
+            ->add('reusable', 'choice', array(
+                'choices' => array('1' => 'Reusable', '0' => 'Non-Reusable'),
+                'expanded' => true,
+                'multiple' => false,
             ))
             ->end();
     }
@@ -27,6 +34,7 @@ class ItemAdmin extends Admin
             ->addIdentifier('title', 'text',array(
                 'route' => array('name' => 'show'),
             ))
+            ->add('reusable', 'boolean')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'edit' => array(),
@@ -41,6 +49,7 @@ class ItemAdmin extends Admin
     {
         $datagridMapper->add('title', 'doctrine_phpcr_string');
         $datagridMapper->add('body', 'doctrine_phpcr_string');
+        $datagridMapper->add('reusable');
     }
 
     protected function configureShowFields(ShowMapper $showMapper)
