@@ -7,7 +7,6 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
-use Symfony\Component\Routing\RouteCollection;
 
 class ArticleAdmin extends Admin
 {
@@ -38,7 +37,9 @@ class ArticleAdmin extends Admin
 //                'attr' => array('rows' => 41)
 //            ))
             ->add('items', 'sonata_type_collection', array(), array(
-                'edit' => 'inline'
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable' => 'position',
             ))
             ->end();
     }
@@ -67,7 +68,12 @@ class ArticleAdmin extends Admin
         $parent = $this->getModelManager()->find(null, '/knowman/article');
         $document->setParentDocument($parent);
         $this->setItemsParent($document);
-   }
+    }
+
+    public function preUpdate($document)
+    {
+        $this->setItemsParent($document);
+    }
 
     public function getTemplate($name)
     {

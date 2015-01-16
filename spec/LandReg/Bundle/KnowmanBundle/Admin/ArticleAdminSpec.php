@@ -44,5 +44,4 @@ class ArticleAdminSpec extends ObjectBehavior
         $item->setParentDocument(Argument::any())->shouldBeCalled();
         $this->setItemsParent($article);
     }
-
 }
