@@ -3,11 +3,12 @@
 namespace Landreg\Bundle\KnowmanBundle\Document;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 use Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface;
 
 /**
- * @PHPCR\Document()
+ * @PHPCR\Document(referenceable=true)
  */
 class Article implements PublishableInterface
 {
@@ -27,15 +28,24 @@ class Article implements PublishableInterface
     protected $body;
 
     /**
+     * @PHPCR\Boolean()
+     */
+    protected $publishable = false;
+
+    /**
+     * @PHPCR\ReferenceMany(strategy="weak", targetDocument="Landreg\Bundle\KnowmanBundle\Document\Item", cascade="persist")
+     */
+    private $items;
+
+    /**
      * @PHPCR\ParentDocument()
      */
     protected $parentDocument;
 
-    /**
-     * @var boolean
-     * @PHPCR\Boolean()
-     */
-    protected $publishable = false;
+    public function __construct()
+    {
+        $this->items = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -86,27 +96,6 @@ class Article implements PublishableInterface
     }
 
     /**
-     * @return mixed
-     */
-    public function getParentDocument()
-    {
-        return $this->parentDocument;
-    }
-
-    /**
-     * @param mixed $parentDocument
-     */
-    public function setParentDocument($parentDocument)
-    {
-        $this->parentDocument = $parentDocument;
-    }
-
-    public function __toString()
-    {
-        return isset($this->title) ? $this->title : "Article";
-    }
-
-    /**
      * Set the boolean flag whether this content is publishable or not.
      *
      * @param boolean $publishable
@@ -127,5 +116,44 @@ class Article implements PublishableInterface
     public function isPublishable()
     {
         return $this->publishable;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParentDocument()
+    {
+        return $this->parentDocument;
+    }
+
+    /**
+     * @param mixed $parentDocument
+     */
+    public function setParentDocument($parentDocument)
+    {
+        $this->parentDocument = $parentDocument;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    public function setItems($items)
+    {
+        $this->items = $items;
+    }
+
+    public function __toString()
+    {
+        return isset($this->title) ? $this->title : "Article";
+    }
+
+    public function addItem($item)
+    {
+        $this->items->add($item);
     }
 }

@@ -4,12 +4,14 @@ namespace Landreg\Bundle\KnowmanBundle\Admin;
 
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
 class ItemAdmin extends Admin
 {
+
     protected $supportsPreviewMode = true;
 
     protected function configureFormFields(FormMapper $formMapper)

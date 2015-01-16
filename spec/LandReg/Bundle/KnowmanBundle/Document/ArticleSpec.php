@@ -2,6 +2,7 @@
 
 namespace spec\Landreg\Bundle\KnowmanBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -32,5 +33,19 @@ class ArticleSpec extends ObjectBehavior
         $this->isPublishable()->shouldReturn(false);
         $this->setPublishable(true);
         $this->isPublishable()->shouldReturn(true);
+    }
+
+
+    function it_can_set_items($items)
+    {
+        $this->setItems($items);
+        $this->getItems()->shouldReturn($items);
+    }
+
+    function it_can_add_an_item(ArrayCollection $items, $item)
+    {
+        $this->setItems($items);
+        $items->add($item)->shouldBeCalled();
+        $this->addItem($item);
     }
 }

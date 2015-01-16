@@ -6,7 +6,7 @@ namespace Landreg\Bundle\KnowmanBundle\Document;
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCR;
 
 /**
- * @PHPCR\Document()
+ * @PHPCR\Document(referenceable=true)
  */
 class Item
 {
@@ -34,6 +34,12 @@ class Item
      * @PHPCR\ParentDocument()
      */
     protected $parentDocument;
+
+    /**
+     * @PHPCR\Referrers(referringDocument="Landreg\Bundle\KnowmanBundle\Document\Article", referencedBy="items")
+     */
+    private $referencedBy;
+
 
     /**
      * @return mixed

@@ -33,9 +33,12 @@ class ArticleAdmin extends Admin
     {
         $formMapper
             ->add('title', 'text')
-            ->add('body', 'textarea', array(
-                'required' => false,
-                'attr' => array('rows' => 41),
+//            ->add('body', 'textarea', array(
+//                'required' => false,
+//                'attr' => array('rows' => 41)
+//            ))
+            ->add('items', 'sonata_type_collection', array(), array(
+                'edit' => 'inline'
             ))
             ->end();
     }
@@ -63,7 +66,8 @@ class ArticleAdmin extends Admin
     {
         $parent = $this->getModelManager()->find(null, '/knowman/article');
         $document->setParentDocument($parent);
-    }
+        $this->setItemsParent($document);
+   }
 
     public function getTemplate($name)
     {
@@ -79,5 +83,13 @@ class ArticleAdmin extends Admin
                 break;
         }
     }
-}
 
+    public function setItemsParent($document)
+    {
+        $parent = $this->getModelManager()->find(null, '/knowman/item');
+        $items = $document->getItems();
+        foreach($items->toArray() as $item) {
+            $item->setParentDocument($parent);
+        }
+    }
+}

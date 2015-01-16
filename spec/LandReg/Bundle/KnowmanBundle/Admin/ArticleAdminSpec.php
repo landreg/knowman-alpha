@@ -2,7 +2,9 @@
 
 namespace spec\LandReg\Bundle\KnowmanBundle\Admin;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Landreg\Bundle\KnowmanBundle\Document\Article;
+use Landreg\Bundle\KnowmanBundle\Document\Item;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sonata\AdminBundle\Model\ModelManagerInterface;
@@ -20,13 +22,6 @@ class ArticleAdminSpec extends ObjectBehavior
         $this->shouldHaveType('LandReg\Bundle\KnowmanBundle\Admin\ArticleAdmin');
     }
 
-    function it_sets_the_right_path(Article $document, ModelManagerInterface $modelManager)
-    {
-        $this->setModelManager($modelManager);
-        $document->setParentDocument(Argument::any())->shouldBeCalled();
-        $this->prePersist($document);
-    }
-
     function it_has_a_preview_template()
     {
         $this->getTemplate('preview')->shouldReturn("LandregKnowmanBundle:Admin/Article:preview.html.twig");
@@ -37,9 +32,17 @@ class ArticleAdminSpec extends ObjectBehavior
         $this->getTemplate('show')->shouldReturn("LandregKnowmanBundle:Admin/Article:show.html.twig");
     }
 
-    function it_persists_to_the_right_path(ModelManagerInterface $modelManager, Article $document) {
+    function xit_can_prepersist_the_article(ModelManagerInterface $modelManager, Article $article, ArrayCollection $collection, Item $item)
+    {
+        $modelManager->find(Argument::any(), '/knowman/item')->shouldBeCalled();
         $this->setModelManager($modelManager);
-        $modelManager->find(Argument::any(), '/knowman/article')->shouldBeCalled();
-        $this->prePersist($document);
+
+        $article->getItems()->shouldBeCalled();
+        $article->getItems(Argument::any())->willReturn($collection);
+        $collection->toArray()->willReturn(array($item));
+
+        $item->setParentDocument(Argument::any())->shouldBeCalled();
+        $this->setItemsParent($article);
     }
+
 }

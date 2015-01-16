@@ -26,7 +26,7 @@ class ItemSpec extends ObjectBehavior
 
     function it_is_reusable()
     {
-       $this->isReusable()->shouldReturn(false);
+       $this->isReusable()->shouldReturn(null);
         $this->setReusable(true);
         $this->isReusable()->shouldReturn(true);
     }
