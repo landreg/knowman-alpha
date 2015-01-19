@@ -2,6 +2,8 @@
 namespace Landreg\Bundle\KnowmanBundle\Admin;
 
 
+use Landreg\Bundle\KnowmanBundle\Document\Article;
+use Landreg\Bundle\KnowmanBundle\Document\Item;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -81,11 +83,6 @@ class ArticleAdmin extends Admin
 
     public function preUpdate($document)
     {
-        $item = $this->itemAdmin->getObject("/knowman/item/1266224827");
-        $document->addItem($item);
-        $dm = $this->getModelManager()->getDocumentManager();
-        $dm->persist($document);
-        $dm->flush();
         $this->setItemsParent($document);
     }
 
@@ -115,5 +112,21 @@ class ArticleAdmin extends Admin
 
     public function postUpdate($document)
     {
+        $parent = $this->getModelManager()->find(null, '/knowman/article');
+        $article = new Article();
+        $article->setParentDocument($parent);
+        $article->setTitle('jimmy');
+        $parent = $this->getModelManager()->find(null, '/knowman/item');
+        $itess = new Item();
+        $itess->setParentDocument($parent);
+        $itess->setTitle('fffff');
+        $itess->setReusable(false);
+        $article->addItem($itess);
+
+        $item = $this->itemAdmin->getObject("/knowman/item/1440418355");
+        $article->addItem($item);
+        $dm = $this->getModelManager()->getDocumentManager();
+        $dm->persist($article);
+        $dm->flush();
     }
 }
