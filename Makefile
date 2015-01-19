@@ -7,6 +7,9 @@ init:
 	make fixtures
 	make assets
 
+update-db:
+	php app/console doctrine:phpcr:repository:init
+
 fixtures:
 	php app/console doctrine:database:drop --force
 	php app/console doctrine:database:create

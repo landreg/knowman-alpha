@@ -43,7 +43,7 @@ chmod +x $DESTPATH/app/console
 cd $DESTPATH && ln -s $VENDOR_PATH vendor
 
 # update composer and genterate assets composer install
-cd $DESTPATH && make source && make assets
+cd $DESTPATH && make source && make assets && make update-db
 
 # Make sure the web server can write to the dirs it needs
 chmod -R 775 $DESTPATH/app/cache
