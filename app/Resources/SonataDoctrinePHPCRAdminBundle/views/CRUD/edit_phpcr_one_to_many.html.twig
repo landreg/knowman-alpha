@@ -86,15 +86,6 @@ file that was distributed with this source code.
             {% if sonata_admin.field_description.associationadmin.hasroute('create') and sonata_admin.field_description.associationadmin.isGranted('CREATE') and btn_add %}
                 <span id="field_actions_{{ id }}" >
                     <a
-                            href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
-                            onclick="return start_field_retrieve_{{ id }}(this);"
-                            class="btn btn-success btn-sm btn-outline sonata-ba-action"
-                            title="{{ btn_add|trans({}, btn_catalogue) }}"
-                            >
-                        <i class="icon-plus fa fa-plus-circle"></i>
-                        {{ "btn_select"|trans({}, "LandregKnowmanBundleAdmin") }}
-                    </a>
-                    <a
                         href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
                         onclick="return start_field_retrieve_{{ id }}(this);"
                         class="btn btn-success btn-sm btn-outline sonata-ba-action"
@@ -103,6 +94,15 @@ file that was distributed with this source code.
                         <i class="icon-plus fa fa-plus-circle"></i>
                         {{ btn_add|trans({}, btn_catalogue) }}
                     </a>
+                        <a
+                                href="{{ sonata_admin.field_description.associationadmin.generateUrl('create') }}"
+                                onclick="return start_edit_field_retrieve_{{ id }}(this);"
+                                class="btn btn-success btn-sm btn-outline sonata-ba-action"
+                                title="{{ btn_add|trans({}, btn_catalogue) }}"
+                                >
+                            <i class="icon-plus fa fa-plus-circle"></i>
+                            {{ "btn_select"|trans({}, "LandregKnowmanBundleAdmin") }}
+                        </a>
                 </span>
             {% endif %}
 

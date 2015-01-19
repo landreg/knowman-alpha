@@ -11,6 +11,10 @@ use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 class ArticleAdmin extends Admin
 {
     protected $supportsPreviewMode = true;
+    /**
+     * @var $itemAdmin ItemAdmin
+     */
+    protected $itemAdmin;
 
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -26,6 +30,11 @@ class ArticleAdmin extends Admin
                 'label' => 'Options'
             ))
         ;
+    }
+
+    public function setItemAdmin(ItemAdmin $itemAdmin)
+    {
+        $this->itemAdmin = $itemAdmin;
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -72,6 +81,11 @@ class ArticleAdmin extends Admin
 
     public function preUpdate($document)
     {
+        $item = $this->itemAdmin->getObject("/knowman/item/1266224827");
+        $document->addItem($item);
+        $dm = $this->getModelManager()->getDocumentManager();
+        $dm->persist($document);
+        $dm->flush();
         $this->setItemsParent($document);
     }
 
@@ -97,5 +111,9 @@ class ArticleAdmin extends Admin
         foreach($items->toArray() as $item) {
             $item->setParentDocument($parent);
         }
+    }
+
+    public function postUpdate($document)
+    {
     }
 }

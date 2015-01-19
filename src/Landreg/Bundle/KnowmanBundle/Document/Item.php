@@ -30,6 +30,8 @@ class Item
      */
     protected $reusable;
 
+    protected $formId;
+
     /**
      * @PHPCR\ParentDocument()
      */
@@ -120,6 +122,24 @@ class Item
     {
         $this->parentDocument = $parentDocument;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFormId()
+    {
+        return isset($this->formId) ? $this->formId : $this->id;
+    }
+
+    /**
+     * @param mixed $formId
+     */
+    public function setFormId($formId)
+    {
+        $this->formId = $formId;
+    }
+
+
 
     public function __toString()
     {

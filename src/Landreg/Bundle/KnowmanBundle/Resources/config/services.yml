@@ -9,6 +9,7 @@ services:
             - { name: sonata.admin, manager_type: doctrine_phpcr, group: 'Basic CMS', label: "Article " }
         calls:
             - [setRouteBuilder, ['@sonata.admin.route.path_info_slashes']]
+            - [setItemAdmin, ['@langreg.knowman.admin.content_item']]
 
     langreg.knowman.admin.content_item:
         class: Landreg\Bundle\KnowmanBundle\Admin\ItemAdmin
@@ -29,3 +30,12 @@ services:
             - ~
         tags:
             - { name: "doctrine_phpcr.initializer" }
+
+    landreg.knowman.admin.controller.admin:
+        class:  Landreg\Bundle\KnowmanBundle\Controller\HelperController
+        arguments:
+            - @twig
+            - @sonata.admin.pool
+            - @sonata.admin.helper
+            - @validator
+

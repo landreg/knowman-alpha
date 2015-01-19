@@ -33,7 +33,7 @@ class Article implements PublishableInterface
     protected $publishable = false;
 
     /**
-     * @PHPCR\ReferenceMany(strategy="weak", targetDocument="Landreg\Bundle\KnowmanBundle\Document\Item", cascade="persist")
+     * @PHPCR\ReferenceMany(strategy="hard", targetDocument="Landreg\Bundle\KnowmanBundle\Document\Item", cascade="persist")
      */
     private $items;
 
