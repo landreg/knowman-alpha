@@ -33,9 +33,32 @@ class Article implements PublishableInterface
     protected $publishable = false;
 
     /**
-     * @PHPCR\ReferenceMany(strategy="hard", targetDocument="Landreg\Bundle\KnowmanBundle\Document\Item", cascade="persist")
+     * @PHPCR\ReferenceMany(strategy="weak", targetDocument="Landreg\Bundle\KnowmanBundle\Document\Item", cascade="persist")
      */
     private $items;
+
+    /**
+     * @PHPCR\ReferenceOne(strategy="weak", targetDocument="Landreg\Bundle\KnowmanBundle\Document\Item", cascade="persist")
+     */
+    private $existingItem;
+
+    /**
+     * @return mixed
+     */
+    public function getExistingItem()
+    {
+        return $this->existingItem;
+    }
+
+    /**
+     * @param mixed $camel
+     */
+    public function setExistingItem($existingItem)
+    {
+        $this->existingItem = $existingItem;
+    }
+
+
 
     /**
      * @PHPCR\ParentDocument()
@@ -46,6 +69,8 @@ class Article implements PublishableInterface
     {
         $this->items = new ArrayCollection();
     }
+
+
 
     /**
      * @return mixed
