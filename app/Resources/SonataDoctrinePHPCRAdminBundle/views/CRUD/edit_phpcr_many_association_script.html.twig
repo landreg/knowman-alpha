@@ -54,7 +54,7 @@ This code manage the many-to-[one|many] association field popup
             return;
         }
 
-        jQuery('#{{ id }}_id').val(element.attr('objectId'));
+        jQuery('#{{ id }}' + '_id').val(element.attr('objectId'));
         jQuery('#{{ id }}').trigger('change');
         {#jQuery('#{{ id }}').closest('form').submit();#}
 
