@@ -17,9 +17,6 @@ class ItemAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id', 'text', array(
-                'required' => false,
-            ))
             ->add('title', 'text')
             ->add('body', 'textarea', array(
                 'required' => false,

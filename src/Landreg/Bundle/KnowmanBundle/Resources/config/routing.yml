@@ -2,7 +2,3 @@ landreg_knowman_homepage:
     path:     /hello/{name}
     defaults: { _controller: LandregKnowmanBundle:Default:index }
 
-
-landreg_knowman_admin_append_edit_form_element:
-    pattern: /core/append-edit-form-field-element
-    defaults: { _controller: landreg.knowman.admin.controller.admin:appendEditFormFieldElementAction }

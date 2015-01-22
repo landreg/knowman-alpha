@@ -23,6 +23,7 @@ This code manage the many-to-[one|many] association field popup
 <!-- edit many association -->
 
 <script type="text/javascript">
+
     {#
       handle link click in a list :
         - if the parent has an objectId defined then the related input get updated
@@ -267,37 +268,37 @@ This code manage the many-to-[one|many] association field popup
                     field_dialog_{{ id }}.dialog('close');
 
                     {% if sonata_admin.edit == 'list' %}
-                        {#
-                           in this case we update the hidden input, and call the change event to
-                           retrieve the post information
-                        #}
-                        jQuery('#{{ id }}').val(data.objectId);
-                        jQuery('#{{ id }}').change();
+                    {#
+                       in this case we update the hidden input, and call the change event to
+                       retrieve the post information
+                    #}
+                    jQuery('#{{ id }}').val(data.objectId);
+                    jQuery('#{{ id }}').change();
 
                     {% else %}
 
-                        // reload the form element
-                        jQuery('#field_widget_{{ id }}').closest('form').ajaxSubmit({
-                            url: '{{ url('sonata_admin_retrieve_form_element', {
+                    // reload the form element
+                    jQuery('#field_widget_{{ id }}').closest('form').ajaxSubmit({
+                        url: '{{ url('sonata_admin_retrieve_form_element', {
                                 'elementId': id,
                                 'objectId':  sonata_admin.admin.root.id(sonata_admin.admin.root.subject),
                                 'uniqid':    sonata_admin.admin.root.uniqid,
                                 'code':      sonata_admin.admin.root.code
                             }) }}',
-                            data: {_xml_http_request: true },
-                            type: 'POST',
-                            success: function(html) {
-                                jQuery('#field_container_{{ id }}').replaceWith(html);
-                                var newElement = jQuery('#{{ id }} [value="' + data.objectId + '"]');
-                                if (newElement.is("input")) {
-                                    newElement.attr('checked', 'checked');
-                                } else {
-                                    newElement.attr('selected', 'selected');
-                                }
-
-                                jQuery('#field_container_{{ id }}').trigger('sonata-admin-append-form-element');
+                        data: {_xml_http_request: true },
+                        type: 'POST',
+                        success: function(html) {
+                            jQuery('#field_container_{{ id }}').replaceWith(html);
+                            var newElement = jQuery('#{{ id }} [value="' + data.objectId + '"]');
+                            if (newElement.is("input")) {
+                                newElement.attr('checked', 'checked');
+                            } else {
+                                newElement.attr('selected', 'selected');
                             }
-                        });
+
+                            jQuery('#field_container_{{ id }}').trigger('sonata-admin-append-form-element');
+                        }
+                    });
 
                     {% endif %}
 
@@ -351,69 +352,69 @@ This code manage the many-to-[one|many] association field popup
 
 
     {% if sonata_admin.edit == 'list' %}
-        {#
-            This code is used to defined the "list" popup
-        #}
-        // this function initialize the popup
-        // this can be only done this way has popup can be cascaded
-        function start_field_dialog_form_list_{{ id }}(link) {
+    {#
+        This code is used to defined the "list" popup
+    #}
+    // this function initialize the popup
+    // this can be only done this way has popup can be cascaded
+    function start_field_dialog_form_list_{{ id }}(link) {
 
-            link.onclick = null;
+        link.onclick = null;
 
-            initialize_popup_{{ id }}();
+        initialize_popup_{{ id }}();
 
-            // add the jQuery event to the a element
+        // add the jQuery event to the a element
             field_dialog_form_list_{{ id }}(link);
 
-            return false;
+        return false;
+    }
+
+    function remove_selected_element_{{ id }}(link) {
+
+        link.onclick = null;
+
+        jQuery(link)
+                .click(field_remove_element_{{ id}})
+                .trigger('click')
+        ;
+
+        return false;
+    }
+
+    function field_remove_element_{{ id }}(event) {
+        event.preventDefault();
+
+        if (jQuery('#{{ id }} option').get(0)) {
+            jQuery('#{{ id }}').attr('selectedIndex', '-1').children("option:selected").attr("selected", false);
         }
 
-        function remove_selected_element_{{ id }}(link) {
+        jQuery('#{{ id }}').val('');
+        jQuery('#{{ id }}').trigger('change');
 
-            link.onclick = null;
+        return false;
+    }
+    {#
+      attach onchange event on the input
+    #}
 
-            jQuery(link)
-                    .click(field_remove_element_{{ id}})
-                    .trigger('click')
-            ;
+    // update the label
+    jQuery('#{{ id }}').on('change', function(event) {
 
-            return false;
-        }
+        Admin.log('[{{ id }}] update the label');
 
-        function field_remove_element_{{ id }}(event) {
-            event.preventDefault();
-
-            if (jQuery('#{{ id }} option').get(0)) {
-                jQuery('#{{ id }}').attr('selectedIndex', '-1').children("option:selected").attr("selected", false);
-            }
-
-            jQuery('#{{ id }}').val('');
-            jQuery('#{{ id }}').trigger('change');
-
-            return false;
-        }
-        {#
-          attach onchange event on the input
-        #}
-
-        // update the label
-        jQuery('#{{ id }}').on('change', function(event) {
-
-            Admin.log('[{{ id }}] update the label');
-
-            jQuery('#field_widget_{{ id }}').html("<span><img src=\"{{ asset('bundles/sonataadmin/ajax-loader.gif') }}\" style=\"vertical-align: middle; margin-right: 10px\"/>{{ 'loading_information'|trans([], 'SonataAdminBundle') }}</span>");
-            jQuery.ajax({
-                type: 'GET',
-                url: '{{ url('sonata_admin_short_object_information', {
+        jQuery('#field_widget_{{ id }}').html("<span><img src=\"{{ asset('bundles/sonataadmin/ajax-loader.gif') }}\" style=\"vertical-align: middle; margin-right: 10px\"/>{{ 'loading_information'|trans([], 'SonataAdminBundle') }}</span>");
+        jQuery.ajax({
+            type: 'GET',
+            url: '{{ url('sonata_admin_short_object_information', {
                     'objectId': 'OBJECT_ID',
                     'uniqid': associationadmin.uniqid,
                     'code': associationadmin.code
                 })}}'.replace('OBJECT_ID', jQuery(this).val()),
-                success: function(html) {
-                    jQuery('#field_widget_{{ id }}').html(html);
-                }
-            });
+            success: function(html) {
+                jQuery('#field_widget_{{ id }}').html(html);
+            }
         });
+    });
 
     {% endif %}
 

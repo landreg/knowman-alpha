@@ -46,17 +46,13 @@ class ArticleAdmin extends Admin
     {
         $formMapper
             ->add('title', 'text')
-//            ->add('body', 'textarea', array(
-//                'required' => false,
-//                'attr' => array('rows' => 41)
-//            ))
-            ->add('existingItem', 'sonata_type_admin', array(
+                ->add('existingItem', 'sonata_type_admin', array(
                 'btn_add' => false,
                 'btn_list' => "Select item",
                 'btn_delete' => false,
                 'required' => false,
                 'help' => "Selecting an item will save your document",
-                'label' => "Choose existing item.",
+                'label' => "Build up your article from new or existing items",
             ), array(
                 'edit' => 'list',
                 'type' => 1,
@@ -65,19 +61,6 @@ class ArticleAdmin extends Admin
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable' => 'position',
-            ))
-            ->add('existingItem', 'sonata_type_admin', array(
-                'btn_add' => false,
-                'btn_list' => "Select item",
-                'btn_delete' => false,
-                'mapped' => false,
-                'required' => false,
-                'help' => "Selecting an item will save your document. You can drag and drop the order.",
-                'label' => "Choose existing item.",
-            ), array(
-                'edit' => 'list',
-                'type' => 1,
-                'admin_code' => 'langreg.knowman.admin.content_item'
             ))
             ->end();
     }
@@ -139,12 +122,5 @@ class ArticleAdmin extends Admin
 
     public function postUpdate($document)
     {
-        $article = $this->getModelManager()->find(null, '/knowman/article/1539523484');
-
-        $item = $this->itemAdmin->getObject("/knowman/item/1640973969");
-        $article->addItem($item);
-        $dm = $this->getModelManager()->getDocumentManager();
-        $dm->persist($article);
-        $dm->flush();
     }
 }

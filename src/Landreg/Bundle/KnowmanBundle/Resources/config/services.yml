@@ -30,12 +30,3 @@ services:
             - ~
         tags:
             - { name: "doctrine_phpcr.initializer" }
-
-    landreg.knowman.admin.controller.admin:
-        class:  Landreg\Bundle\KnowmanBundle\Controller\HelperController
-        arguments:
-            - @twig
-            - @sonata.admin.pool
-            - @sonata.admin.helper
-            - @validator
-

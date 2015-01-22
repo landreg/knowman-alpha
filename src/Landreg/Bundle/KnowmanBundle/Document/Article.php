@@ -23,11 +23,6 @@ class Article implements PublishableInterface
     protected $title;
 
     /**
-     * @PHPCR\String(nullable=true)
-     */
-    protected $body;
-
-    /**
      * @PHPCR\Boolean()
      */
     protected $publishable = false;
@@ -102,22 +97,6 @@ class Article implements PublishableInterface
     public function setTitle($title)
     {
         $this->title = $title;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBody()
-    {
-        return $this->body;
-    }
-
-    /**
-     * @param mixed $body
-     */
-    public function setBody($body)
-    {
-        $this->body = $body;
     }
 
     /**
