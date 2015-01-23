@@ -2,6 +2,7 @@
 namespace Landreg\Bundle\KnowmanBundle\Admin;
 
 
+use Landreg\Bundle\KnowmanBundle\Form\Type\ItemSelectType;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -45,24 +46,38 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text')
-                ->add('existingItem', 'sonata_type_admin', array(
-                'btn_add' => false,
-                'btn_list' => "Select item",
-                'btn_delete' => false,
-                'required' => false,
-                'help' => "Selecting an item will save your document",
-                'label' => "Build up your article from new or existing items",
-            ), array(
-                'edit' => 'list',
-                'type' => 1,
+            ->with('form.group.article', array(
+                'translation_domain' => 'LandregKnowmanBundleAdmin',
             ))
-            ->add('items', 'sonata_type_collection', array(), array(
-                'edit' => 'inline',
-                'inline' => 'table',
-                'sortable' => 'position',
+                ->add('title', 'text')
+            ->end()
+            ->with('form.group.items', array(
+                'translation_domain' => 'LandregKnowmanBundleAdmin',
             ))
-            ->end();
+                ->add('asdf', 'itemselect', array(
+                    'mapped' => false,
+                    'admin' => 'langreg.knowman.admin.content_item',
+                    'btn_list' => "Select item",
+                ), array('mapped' => false))
+//                ->add('existingItem', 'sonata_type_admin', array(
+//                    'btn_add' => false,
+//                    'btn_list' => "Select item",
+//                    'btn_delete' => false,
+//                    'btn_catalogue' => 'sadf',
+//                    'required' => false,
+//                    'help' => "Selecting an item will save your document",
+//                    'label' => "Select existing item",
+//                    ), array(
+//                    'edit' => 'list',
+//                    'type' => 1,
+//                ))
+                ->add('items', 'sonata_type_collection', array(), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable' => 'position',
+                ))
+            ->end()
+        ->end();
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -86,6 +101,7 @@ class ArticleAdmin extends Admin
 
     public function prePersist($document)
     {
+        $this->processExistingItem($document);
         $parent = $this->getModelManager()->find(null, '/knowman/article');
         $document->setParentDocument($parent);
         $this->setItemsParent($document);
@@ -94,6 +110,7 @@ class ArticleAdmin extends Admin
     public function preUpdate($document)
     {
         $this->setItemsParent($document);
+        $this->processExistingItem($document);
     }
 
     public function getTemplate($name)
@@ -120,7 +137,8 @@ class ArticleAdmin extends Admin
         }
     }
 
-    public function postUpdate($document)
+    public function processExistingItem($document)
     {
+        $document->setExistingItem(null);
     }
 }

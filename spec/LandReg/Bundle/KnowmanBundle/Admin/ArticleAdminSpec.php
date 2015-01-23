@@ -44,4 +44,9 @@ class ArticleAdminSpec extends ObjectBehavior
         $item->setParentDocument(Argument::any())->shouldBeCalled();
         $this->setItemsParent($article);
     }
+
+    function it_can_process_the_existing_item_field(Article $article) {
+        $article->setExistingItem(null)->shouldBeCalled();
+        $this->processExistingItem($article);
+    }
 }

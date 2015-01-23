@@ -98,7 +98,7 @@ file that was distributed with this source code.
             {% endif %}
 
             {% if sonata_admin.field_description.associationadmin.hasRoute('delete') and sonata_admin.field_description.associationadmin.isGranted('DELETE') and btn_delete %}
-                <a  href=""
+                <a href=""
                     onclick="return remove_selected_element_{{ id }}(this);"
                     class="btn btn-danger btn-sm btn-outline sonata-ba-action"
                     title="{{ btn_delete|trans({}, btn_catalogue) }}"
@@ -126,9 +126,8 @@ file that was distributed with this source code.
     {% elseif sonata_admin.field_description.mappingtype == 8 %}
         {{ block('sonata_admin_phpcr_many_to_many_widget') }}
     {% elseif sonata_admin.field_description.mappingtype == 4 or sonata_admin.field_description.mappingtype == 'children' %}
-        4
-        {#{{ block('sonata_admin_phpcr_one_to_many_widget') }}#}
-        {{ block('sonata_admin_phpcr_one_to_one_widget') }}
+        {{ block('sonata_admin_phpcr_one_to_many_widget') }}
+        {#{{ block('sonata_admin_phpcr_one_to_one_widget') }}#}
     {% else %}
         INVALID MODE : {{ id }}
     {% endif %}

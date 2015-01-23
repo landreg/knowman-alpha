@@ -26,11 +26,6 @@ class Item
     protected $body;
 
     /**
-     * @PHPCR\Boolean()
-     */
-    protected $reusable;
-
-    /**
      * @PHPCR\ParentDocument()
      */
     protected $parentDocument;
@@ -87,22 +82,6 @@ class Item
     public function setBody($body)
     {
         $this->body = $body;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function isReusable()
-    {
-        return $this->reusable;
-    }
-
-    /**
-     * @param mixed $reusable
-     */
-    public function setReusable($reusable)
-    {
-        $this->reusable = $reusable;
     }
 
     /**

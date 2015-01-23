@@ -24,10 +24,4 @@ class ItemSpec extends ObjectBehavior
         $this->getBody()->shouldReturn($body);
     }
 
-    function it_is_reusable()
-    {
-       $this->isReusable()->shouldReturn(null);
-        $this->setReusable(true);
-        $this->isReusable()->shouldReturn(true);
-    }
 }

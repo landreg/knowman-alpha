@@ -21,13 +21,6 @@ class ArticleSpec extends ObjectBehavior
         $this->getTitle()->shouldReturn($title);
     }
 
-    function it_should_have_a_body()
-    {
-        $body = "body";
-        $this->setBody($body);
-        $this->getBody()->shouldReturn($body);
-    }
-
     function it_can_be_published()
     {
         $this->isPublishable()->shouldReturn(false);

@@ -38,7 +38,8 @@
     "require-dev": {
         "liip/functional-test-bundle": "~1.0",
         "sensio/generator-bundle": "~2.3",
-        "phpspec/phpspec": "~2.1"
+        "phpspec/phpspec": "~2.1",
+        "phpspec/nyan-formatters": "~1.0"
     },
     "scripts": {
         "post-install-cmd": [

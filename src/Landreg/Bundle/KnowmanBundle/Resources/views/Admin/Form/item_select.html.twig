@@ -1,0 +1,27 @@
+{% block itemselect_widget %}
+    {% spaceless %}
+        {{ block('form_widget_simple') }}
+
+        <span id="field_actions_{{ id }}" >
+            {% if associated_admin.hasroute('list') and associated_admin.isGranted('LIST') and btn_list %}
+
+                <a href=" {{ associated_admin.generateUrl('list', {
+                    uniqid: 's54c274157d622',
+                    code: 'langreg.knowman.admin.content_item',
+                    pcode: 'langreg.knowman.admin.content_article',
+                    puniqid: 's54c2741283476'
+                }) }} " onclick="start_field_dialog_form_list_{{ id }}(event)"
+                    class="btn btn-info btn-sm btn-outline sonata-ba-action"
+                    title="{{ btn_list|trans({}, btn_catalogue) }}" id="link_{{ id }}"
+                        >
+                    <i class="icon-list fa fa-list"></i>
+                    {{ btn_list|trans({}, btn_catalogue) }}
+                </a>
+
+                <div style="display: none" id="field_dialog_{{ id }}"></div>
+
+                {% include 'LandregKnowmanBundle:Admin/Form:item_select_script.html.twig' %}
+            {% endif %}
+        </span>
+    {% endspaceless %}
+{% endblock %}

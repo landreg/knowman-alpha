@@ -30,3 +30,10 @@ services:
             - ~
         tags:
             - { name: "doctrine_phpcr.initializer" }
+
+    knowman.item.select:
+        class: Landreg\Bundle\KnowmanBundle\Form\Type\ItemSelectType
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: form.type, alias: itemselect }
