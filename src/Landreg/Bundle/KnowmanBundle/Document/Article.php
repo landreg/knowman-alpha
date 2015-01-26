@@ -33,29 +33,6 @@ class Article implements PublishableInterface
     private $items;
 
     /**
-     * @PHPCR\ReferenceOne(strategy="weak", targetDocument="Landreg\Bundle\KnowmanBundle\Document\Item", cascade="persist")
-     */
-    private $existingItem;
-
-    /**
-     * @return mixed
-     */
-    public function getExistingItem()
-    {
-        return $this->existingItem;
-    }
-
-    /**
-     * @param mixed $camel
-     */
-    public function setExistingItem($existingItem)
-    {
-        $this->existingItem = $existingItem;
-    }
-
-
-
-    /**
      * @PHPCR\ParentDocument()
      */
     protected $parentDocument;

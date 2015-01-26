@@ -54,28 +54,18 @@ class ArticleAdmin extends Admin
             ->with('form.group.items', array(
                 'translation_domain' => 'LandregKnowmanBundleAdmin',
             ))
-                ->add('asdf', 'itemselect', array(
-                    'mapped' => false,
-                    'admin' => 'langreg.knowman.admin.content_item',
-                    'btn_list' => "Select item",
-                ), array('mapped' => false))
-//                ->add('existingItem', 'sonata_type_admin', array(
-//                    'btn_add' => false,
-//                    'btn_list' => "Select item",
-//                    'btn_delete' => false,
-//                    'btn_catalogue' => 'sadf',
-//                    'required' => false,
-//                    'help' => "Selecting an item will save your document",
-//                    'label' => "Select existing item",
-//                    ), array(
-//                    'edit' => 'list',
-//                    'type' => 1,
-//                ))
-                ->add('items', 'sonata_type_collection', array(), array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable' => 'position',
-                ))
+            ->add('existingItem', 'itemselect', array(
+                'mapped' => false,
+                'required' => false,
+                'admin' => 'langreg.knowman.admin.content_item',
+                'btn_list' => "Select item",
+                'help' => "Make sure to save the document to add the item to the article",
+            ))
+            ->add('items', 'sonata_type_collection', array(), array(
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable' => 'position',
+            ))
             ->end()
         ->end();
     }

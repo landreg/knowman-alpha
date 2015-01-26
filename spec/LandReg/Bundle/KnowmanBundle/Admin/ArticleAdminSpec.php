@@ -32,7 +32,7 @@ class ArticleAdminSpec extends ObjectBehavior
         $this->getTemplate('show')->shouldReturn("LandregKnowmanBundle:Admin/Article:show.html.twig");
     }
 
-    function xit_can_prepersist_the_article(ModelManagerInterface $modelManager, Article $article, ArrayCollection $collection, Item $item)
+    function xit_can_pre_persist_the_article(ModelManagerInterface $modelManager, Article $article, ArrayCollection $collection, Item $item)
     {
         $modelManager->find(Argument::any(), '/knowman/item')->shouldBeCalled();
         $this->setModelManager($modelManager);
@@ -46,7 +46,6 @@ class ArticleAdminSpec extends ObjectBehavior
     }
 
     function it_can_process_the_existing_item_field(Article $article) {
-        $article->setExistingItem(null)->shouldBeCalled();
         $this->processExistingItem($article);
     }
 }
