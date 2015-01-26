@@ -9,6 +9,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sonata\AdminBundle\Model\ModelManagerInterface;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class ArticleAdminSpec extends ObjectBehavior
 {
@@ -43,9 +44,5 @@ class ArticleAdminSpec extends ObjectBehavior
 
         $item->setParentDocument(Argument::any())->shouldBeCalled();
         $this->setItemsParent($article);
-    }
-
-    function it_can_process_the_existing_item_field(Article $article) {
-        $this->processExistingItem($article);
     }
 }

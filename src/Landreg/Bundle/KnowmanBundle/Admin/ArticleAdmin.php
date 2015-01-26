@@ -58,13 +58,14 @@ class ArticleAdmin extends Admin
                 'mapped' => false,
                 'required' => false,
                 'admin' => 'langreg.knowman.admin.content_item',
-                'btn_list' => "Select item",
-                'help' => "Make sure to save the document to add the item to the article",
+                'btn_list' => "Select from existing items",
+                'help' => "Be sure to save the document to change the order of the document.",
             ))
             ->add('items', 'sonata_type_collection', array(), array(
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable' => 'position',
+                'help' => 'You can drag and drop the order of the items in the table above'
             ))
             ->end()
         ->end();
@@ -91,7 +92,6 @@ class ArticleAdmin extends Admin
 
     public function prePersist($document)
     {
-        $this->processExistingItem($document);
         $parent = $this->getModelManager()->find(null, '/knowman/article');
         $document->setParentDocument($parent);
         $this->setItemsParent($document);
@@ -100,7 +100,6 @@ class ArticleAdmin extends Admin
     public function preUpdate($document)
     {
         $this->setItemsParent($document);
-        $this->processExistingItem($document);
     }
 
     public function getTemplate($name)
@@ -125,10 +124,5 @@ class ArticleAdmin extends Admin
         foreach($items->toArray() as $item) {
             $item->setParentDocument($parent);
         }
-    }
-
-    public function processExistingItem($document)
-    {
-        $document->setExistingItem(null);
     }
 }

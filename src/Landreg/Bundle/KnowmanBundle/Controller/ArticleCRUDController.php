@@ -30,14 +30,12 @@ class ArticleCRUDController extends CRUDController
             $itemForm = $form->get('existingItem');
             $item = $itemForm->getData();
 
-
             if (!$object) {
                 throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
             }
 
-
-            if ($item->getId()) {
-                $newItem = $this->admin->getItemAdmin()->getObject($item->getId());
+            if ($item) {
+                $newItem = $this->admin->getItemAdmin()->getObject($item);
                 $object->addItem($newItem);
 
                 $dm = $this->admin->getModelManager()->getDocumentManager();
