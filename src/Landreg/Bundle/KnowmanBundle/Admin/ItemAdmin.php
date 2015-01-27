@@ -20,7 +20,10 @@ class ItemAdmin extends Admin
             ->add('title', 'text')
             ->add('body', 'textarea', array(
                 'required' => false,
-                'attr' => array('rows' => 10),
+                'attr' => array(
+                    'rows' => 10,
+                    'class' => 'ckeditor'
+                ),
             ))
             ->end();
     }

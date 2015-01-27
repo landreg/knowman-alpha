@@ -6,8 +6,8 @@
             <h1>{{ object.title }}</h1>
             <div>
                 {% for item in object.items %}
-                    <h3>{{ item.title }}</h3>
-                    <div>{{ item.body }}</div>
+                    <h3>{{ item.title|raw }}</h3>
+                    <div>{{ item.body|raw }}</div>
                 {% endfor %}
             </div>
 

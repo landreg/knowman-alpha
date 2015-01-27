@@ -1,0 +1,10 @@
+
+{% autoescape false %}
+
+<!-- edit one association -->
+<script type="text/javascript">
+    jQuery('#field_container_{{ id }}').on('sonata.add_element', function () {
+        CKEDITOR.replaceAll(CKEDITOR.replaceClass);
+    });
+</script>
+{% endautoescape %}
