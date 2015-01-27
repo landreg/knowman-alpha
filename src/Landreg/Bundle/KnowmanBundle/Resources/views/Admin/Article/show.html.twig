@@ -1,4 +1,4 @@
-{% extends 'LandregKnowmanBundle:Admin/Layout:front-facade.html.twig' %}
+{% extends 'LandregKnowmanBundle:Admin/Article:preview.html.twig' %}
 
 {% block previewForm %}
 <a href="{{ admin.generateObjectUrl('edit', object) }}" class="btn btn-danger" type="submit" name="btn_preview_decline"/>{% trans from 'SonataAdminBundle' %}action_edit{% endtrans %} </a>
