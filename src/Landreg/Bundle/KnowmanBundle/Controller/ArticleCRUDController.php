@@ -27,21 +27,9 @@ class ArticleCRUDController extends CRUDController
             $object = $this->admin->getObject($id);
 
             $form = $this->admin->getForm();
-            $itemForm = $form->get('existingItem');
-            $item = $itemForm->getData();
+            $item = $form->get('existingItem')->getData();
 
-            if (!$object) {
-                throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
-            }
-
-            if ($item) {
-                $newItem = $this->admin->getItemAdmin()->getObject($item);
-                $object->addItem($newItem);
-
-                $dm = $this->admin->getModelManager()->getDocumentManager();
-                $dm->persist($object);
-                $dm->flush();
-            }
+            $this->addExistingItem($object, $item);
         }
         return $returnValue;
     }
@@ -62,26 +50,27 @@ class ArticleCRUDController extends CRUDController
         if ($this->getRestMethod() == 'POST') {
             $form = $this->admin->getForm();
             if($form->isValid()) {
-                $id = $this->get('request')->get($this->admin->getIdParameter());
                 $object = $this->admin->getSubject();
-
-                $itemForm = $form->get('existingItem');
-                $item = $itemForm->getData();
-
-                if (!$object) {
-                    throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
-                }
-
-                if ($item) {
-                    $newItem = $this->admin->getItemAdmin()->getObject($item);
-                    $object->addItem($newItem);
-
-                    $dm = $this->admin->getModelManager()->getDocumentManager();
-                    $dm->persist($object);
-                    $dm->flush();
-                }
+                $item = $form->get('existingItem')->getData();
+                $this->addExistingItem($object, $item);
             }
         }
         return $returnValue;
+    }
+
+    public function addExistingItem($article, $item)
+    {
+        if (!$article) {
+            throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
+        }
+
+        if ($item) {
+            $newItem = $this->admin->getItemAdmin()->getObject($item);
+            $article->addItem($newItem);
+
+            $dm = $this->admin->getModelManager()->getDocumentManager();
+            $dm->persist($article);
+            $dm->flush();
+        }
     }
 }
