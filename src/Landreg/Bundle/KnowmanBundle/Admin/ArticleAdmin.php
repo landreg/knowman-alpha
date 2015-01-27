@@ -59,7 +59,7 @@ class ArticleAdmin extends Admin
                 'required' => false,
                 'admin' => 'langreg.knowman.admin.content_item',
                 'btn_list' => "Select from existing items",
-                'help' => "Be sure to save the document to change the order of the document.",
+                'help' => "Make sure you save the document to have the item in the article.",
             ))
             ->add('items', 'sonata_type_collection', array(), array(
                 'edit' => 'inline',
