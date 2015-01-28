@@ -4,10 +4,10 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	
+
 	// %REMOVE_START%
 	// The configuration options below are needed when running CKEditor from source files.
-	config.plugins = 'autogrow,basicstyles,dialogui,dialog,clipboard,enterkey,entities,floatingspace,indent,indentlist,fakeobjects,link,list,button,toolbar,undo,wysiwygarea';
+	config.plugins = 'autogrow,basicstyles,dialogui,dialog,clipboard,enterkey,entities,floatingspace,fakeobjects,link,button,toolbar,undo,wysiwygarea';
 	config.skin = 'icy_orange';
 	// %REMOVE_END%
 
@@ -34,8 +34,11 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// The default plugins included in the basic setup define some buttons that
 	// are not needed in a basic editor. They are removed here.
-	config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
+	config.removeButtons = 'Bold,Italic,Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
 
 	// Dialog windows are also simplified.
 	config.removeDialogTabs = 'link:advanced';
+
+	config.linkShowAdvancedTab = false;
+	config.linkShowTargetTab = false;
 };
