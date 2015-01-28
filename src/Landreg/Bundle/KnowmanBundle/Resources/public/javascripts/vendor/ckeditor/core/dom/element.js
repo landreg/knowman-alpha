@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -1107,8 +1107,8 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 			}
 
 			return function( inlineOnly ) {
-				if ( !( inlineOnly === false || CKEDITOR.dtd.$removeEmpty[ this.getName() ] || this.is( 'a' ) ) ) // Merge empty links and anchors also. (#5567)
-				{
+				// Merge empty links and anchors also. (#5567)
+				if ( !( inlineOnly === false || CKEDITOR.dtd.$removeEmpty[ this.getName() ] || this.is( 'a' ) ) ) {
 					return;
 				}
 
@@ -1398,7 +1398,7 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 				y = 0,
 				doc = this.getDocument(),
 				body = doc.getBody(),
-				quirks = doc.$.compatMode == 'BackCompat';
+				quirks = CKEDITOR.env.quirks;
 
 			if ( document.documentElement.getBoundingClientRect ) {
 				var box = this.$.getBoundingClientRect(),
@@ -1424,11 +1424,24 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 					needAdjustScrollAndBorders = ( quirks && inBody ) || ( !quirks && inDocElem );
 				}
 
+				// #12747.
 				if ( needAdjustScrollAndBorders ) {
-					x = box.left + ( !quirks && $docElem.scrollLeft || body.$.scrollLeft );
-					x -= clientLeft;
-					y = box.top + ( !quirks && $docElem.scrollTop || body.$.scrollTop );
-					y -= clientTop;
+					var scrollRelativeLeft,
+						scrollRelativeTop;
+
+					// See #12758 to know more about document.(documentElement|body).scroll(Left|Top) in Webkit.
+					if ( CKEDITOR.env.webkit ) {
+						scrollRelativeLeft = body.$.scrollLeft || $docElem.scrollLeft;
+						scrollRelativeTop = body.$.scrollTop || $docElem.scrollTop;
+					} else {
+						var scrollRelativeElement = quirks ? body.$ : $docElem;
+
+						scrollRelativeLeft = scrollRelativeElement.scrollLeft;
+						scrollRelativeTop = scrollRelativeElement.scrollTop;
+					}
+
+					x = box.left + scrollRelativeLeft - clientLeft;
+					y = box.top + scrollRelativeTop - clientTop;
 				}
 			} else {
 				var current = this,

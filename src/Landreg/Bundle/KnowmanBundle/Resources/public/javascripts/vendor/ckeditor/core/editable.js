@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -261,8 +261,7 @@
 				// Two line-breaks create one paragraphing block.
 				if ( !isEnterBrMode ) {
 					var duoLF = /\n{2}/g;
-					if ( duoLF.test( html ) )
-					{
+					if ( duoLF.test( html ) ) {
 						var openTag = '<' + paragraphTag + '>', endTag = '</' + paragraphTag + '>';
 						html = openTag + html.replace( duoLF, function() {
 							return endTag + openTag;
@@ -496,8 +495,8 @@
 			fixInitialSelection: function() {
 				var that = this;
 
-				// Deal with IE8- (the old MS selection) first.
-				if ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 ) {
+				// Deal with IE8- IEQM (the old MS selection) first.
+				if ( CKEDITOR.env.ie && ( CKEDITOR.env.version < 9 || CKEDITOR.env.quirks ) ) {
 					if ( this.hasFocus ) {
 						this.focus();
 						fixMSSelection();
@@ -1866,8 +1865,8 @@
 																			// This means that caret is between these nodes.
 				startPath.contains( previousNode ) &&						// Elements path of start of selection has
 				endPath.contains( nextNode ) &&								// to contain prevNode and vice versa.
-				nextNode.isIdentical( previousNode ) )						// Check if elements are identical.
-			{
+				nextNode.isIdentical( previousNode )						// Check if elements are identical.
+			) {
 				// Merge blocks and repeat.
 				nextNode.moveChildren( previousNode );
 				nextNode.remove();
@@ -1932,8 +1931,8 @@
 
 			if ( dataWrapper.getChildCount() == 1 &&					// Only one node bein inserted.
 				checkIfElement( block = dataWrapper.getFirst() ) &&		// And it's an element.
-				block.is( stripSingleBlockTags ) )						// That's <p> or <div> or header.
-			{
+				block.is( stripSingleBlockTags )						// That's <p> or <div> or header.
+			) {
 				// Check children not containing block.
 				children = block.getElementsByTag( '*' );
 				for ( var i = 0, child, count = children.count(); i < count; i++ ) {
