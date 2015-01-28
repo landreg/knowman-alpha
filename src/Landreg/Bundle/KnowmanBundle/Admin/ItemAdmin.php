@@ -73,10 +73,10 @@ class ItemAdmin extends Admin
     {
         switch ($name) {
             case 'preview':
-                return 'LandregKnowmanBundle:Admin/Article:preview.html.twig';
+                return 'LandregKnowmanBundle:Admin/Item:preview.html.twig';
                 break;
             case 'show':
-                return 'LandregKnowmanBundle:Admin/Article:show.html.twig';
+                return 'LandregKnowmanBundle:Admin/Item:show.html.twig';
                 break;
             default:
                 return parent::getTemplate($name);
