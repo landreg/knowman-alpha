@@ -1,4 +1,4 @@
-{% block itemselect_widget %}
+{% block item_select_widget %}
     {% spaceless %}
         {{ block('hidden_widget') }}
 
@@ -17,4 +17,26 @@
         </span>
         <div style="display: none" id="field_dialog_{{ id }}"></div>
     {% endspaceless %}
+{% endblock %}
+
+
+{% block text_and_references_widget %}
+    <div class="lr-widget-text">
+        {{ block('form_widget_simple') }}
+    </div>
+    {% set parent_admin = attribute(form.parent.vars, 'sonata_admin') %}
+
+    {% if parent_admin.inline == 'table' %}
+        <div class="lr-widget-references">
+            {#{{ dump(sonata_admin.admin.subject) }}#}
+            {%  set item = sonata_admin.admin.subject %}
+            {% for article in item.referencedBy %}
+                <div>
+                    <a href="{{ url('admin_landreg_knowman_article_show', {id: article.id}) }}" target="_blank">
+                        {{ article.title }}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+
+{% block form %}
+    <div class="lr-form-container">
+        {{ block('parentForm') }}
+    </div>
+    <div class="lr-usage-container">
+        <h3>Articles using this item</h3>
+        {% for article in object.referencedBy %}
+            <div>
+                <a href="{{ url('admin_landreg_knowman_article_show', {id: admin.id(article)}) }}" target="_blank">{{ article.title }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

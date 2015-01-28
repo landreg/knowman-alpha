@@ -31,9 +31,13 @@ services:
         tags:
             - { name: "doctrine_phpcr.initializer" }
 
-    knowman.item.select:
+    knowman.item.select.type:
         class: Landreg\Bundle\KnowmanBundle\Form\Type\ItemSelectType
         calls:
             - [setContainer, ['@service_container']]
         tags:
-            - { name: form.type, alias: itemselect }
+            - { name: form.type, alias: item_select }
+    knowman.text.and.references.type:
+        class: Landreg\Bundle\KnowmanBundle\Form\Type\TextAndReferencesType
+        tags:
+            - { name: form.type, alias: text_and_references }

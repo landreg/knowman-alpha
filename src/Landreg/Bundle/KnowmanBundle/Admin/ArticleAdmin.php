@@ -2,7 +2,6 @@
 namespace Landreg\Bundle\KnowmanBundle\Admin;
 
 
-use Landreg\Bundle\KnowmanBundle\Form\Type\ItemSelectType;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -54,7 +53,7 @@ class ArticleAdmin extends Admin
             ->with('form.group.items', array(
                 'translation_domain' => 'LandregKnowmanBundleAdmin',
             ))
-            ->add('existingItem', 'itemselect', array(
+            ->add('existingItem', 'item_select', array(
                 'mapped' => false,
                 'required' => false,
                 'admin' => 'langreg.knowman.admin.content_item',
