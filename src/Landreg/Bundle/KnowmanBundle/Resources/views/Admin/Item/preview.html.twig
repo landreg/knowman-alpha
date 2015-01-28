@@ -1,0 +1,26 @@
+{% extends 'LandregKnowmanBundle:Admin/Layout:front-facade.html.twig' %}
+
+{% block preview %}
+    <div class="sonata-ba-view">
+        <div>
+            <h1 class="blur">Lorem ipsum</h1>
+            <div class="blur">
+                <h3>Lorem ipsum</h3>
+                <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque ex inventore perspiciatis quas quibusdam! Ad adipisci, corporis, ea excepturi, illo illum ipsam molestiae neque obcaecati odio ratione sunt ullam?</div>
+            </div>
+            <div>
+                <h3>{{ object.title|raw }}</h3>
+                <div>{{ object.body|raw }}</div>
+            </div>
+            <div class="blur">
+                <h3>Lorem ipsum</h3>
+                <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque ex inventore perspiciatis quas quibusdam! Ad adipisci, corporis, ea excepturi, illo illum ipsam molestiae neque obcaecati odio ratione sunt ullam?</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block previewForm %}
+    {{ block('parentForm') }}
+{% endblock %}

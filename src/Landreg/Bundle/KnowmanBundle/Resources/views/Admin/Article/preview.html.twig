@@ -4,13 +4,12 @@
     <div class="sonata-ba-view">
         <div>
             <h1>{{ object.title }}</h1>
-            <div>
-                {% for item in object.items %}
+            {% for item in object.items %}
+                <div>
                     <h3>{{ item.title }}</h3>
                     <div>{{ item.body }}</div>
-                {% endfor %}
-            </div>
-
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
