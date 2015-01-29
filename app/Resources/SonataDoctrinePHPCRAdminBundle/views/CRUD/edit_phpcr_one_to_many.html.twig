@@ -100,27 +100,49 @@ file that was distributed with this source code.
             {# add code for the sortable options #}
             {% if sonata_admin.field_description.options.sortable is defined %}
                 <script type="text/javascript">
+                    var sortable = {
+                        detachedEditor:null,
+                        startSort: function (event, ui) {
+                            var ckId = ui.item.find('.ckeditor').attr('id');
+                            if(ckId) {
+                                var ins = CKEDITOR.instances[ckId];
+                                ins.getData();
+                                ins.destroy();
+                                sortable.detachedEditor = ckId;
+                            }
+                        },
+
+                        applyPositionValue{{ id }}: function() {
+                            if(sortable.detachedEditor !== null) {
+                                CKEDITOR.replace( sortable.detachedEditor );
+                                sortable.detachedEditor = null;
+                            }
+                            // update the input value position
+                            jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody td.sonata-ba-td-{{ id }}-{{ sonata_admin.field_description.options.sortable }}').each(function(index, element) {
+                                // remove the sortable handler and put it back
+                                jQuery('span.sonata-ba-sortable-handler', element).remove();
+                                jQuery(element).append('<span class="sonata-ba-sortable-handler ui-icon ui-icon-grip-solid-horizontal"></span>');
+                                jQuery('input', element).hide();
+                            });
+
+                            jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody td.sonata-ba-td-{{ id }}-{{ sonata_admin.field_description.options.sortable }} input').each(function(index, value) {
+                                jQuery(value).val(index + 1);
+                            });
+                        }
+                    }
+
                     jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody').sortable({
-                        axis: 'y',
                         opacity: 0.6,
                         items: 'tr',
                         placeholder: "ui-state-highlight",
-                        stop: apply_position_value_{{ id }}
+                        helper: 'clone',
+                        cursorAt: {left: 5},
+
+                        start: sortable.startSort,
+                        stop: sortable.applyPositionValue{{ id }}
                     });
 
-                    function apply_position_value_{{ id }}() {
-                        // update the input value position
-                        jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody td.sonata-ba-td-{{ id }}-{{ sonata_admin.field_description.options.sortable }}').each(function(index, element) {
-                            // remove the sortable handler and put it back
-                            jQuery('span.sonata-ba-sortable-handler', element).remove();
-                            jQuery(element).append('<span class="sonata-ba-sortable-handler ui-icon ui-icon-grip-solid-horizontal"></span>');
-                            jQuery('input', element).hide();
-                        });
 
-                        jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody td.sonata-ba-td-{{ id }}-{{ sonata_admin.field_description.options.sortable }} input').each(function(index, value) {
-                            jQuery(value).val(index + 1);
-                        });
-                    }
 
                     // refresh the sortable option when a new element is added
                     jQuery('#sonata-ba-field-container-{{ id }}').bind('sonata.add_element', function() {
@@ -128,7 +150,7 @@ file that was distributed with this source code.
                         jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody').sortable('refresh');
                     });
 
-                    apply_position_value_{{ id }}();
+                    sortable.applyPositionValue{{ id }}();
 
                 </script>
             {% endif %}
