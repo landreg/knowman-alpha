@@ -11,6 +11,7 @@ use Sonata\DoctrinePHPCRAdminBundle\Admin\Admin;
 
 class ItemAdmin extends Admin
 {
+    private $batchActions = null;
 
     protected $supportsPreviewMode = true;
 
@@ -47,6 +48,8 @@ class ItemAdmin extends Admin
         $datagridMapper->add('body', 'doctrine_phpcr_string');
     }
 
+
+
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
@@ -79,5 +82,18 @@ class ItemAdmin extends Admin
                 return parent::getTemplate($name);
                 break;
         }
+    }
+
+    public function setBatchActions($actions=null)
+    {
+        $this->batchActions = $actions;
+    }
+
+    public function getBatchActions()
+    {
+        if(!is_null($this->batchActions)) {
+            return $this->batchActions;
+        }
+        return parent::getBatchActions();
     }
 }
