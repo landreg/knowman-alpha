@@ -37,3 +37,8 @@ reset:
 	make source
 	php app/console doctrine:database:drop --force
 	make init
+
+build:
+	make source
+	make assets
+	make update-db
