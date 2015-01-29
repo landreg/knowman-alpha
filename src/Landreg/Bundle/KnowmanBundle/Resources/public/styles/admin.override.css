@@ -1,0 +1,7 @@
+body {
+    overflow-x: initial !important;
+}
+
+.ui-sortable tr {
+    cursor: move;
+}
