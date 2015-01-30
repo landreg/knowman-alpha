@@ -37,3 +37,8 @@ services:
             - [setContainer, ['@service_container']]
         tags:
             - { name: form.type, alias: itemselect }
+
+    sonata.admin.doctrine_phpcr.form.collection_type_extension:
+        class: Landreg\Bundle\KnowmanBundle\Form\Extension\CollectionTypeExtension
+        tags:
+            - { name: form.type_extension, alias: sonata_type_collection }
