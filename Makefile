@@ -19,7 +19,7 @@ fixtures:
 	php app/console doctrine:phpcr:fixtures:load
 
 assets:
-	php app/console assets:install --symlink
+	php app/console assets:install
 	php app/console assetic:dump --env=dev
 	php app/console assetic:dump --env=prod
 	make fix-permissions
