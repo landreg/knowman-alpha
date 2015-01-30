@@ -106,9 +106,11 @@ file that was distributed with this source code.
                             var ckId = ui.item.find('.ckeditor').attr('id');
                             if(ckId) {
                                 var ins = CKEDITOR.instances[ckId];
-                                ins.getData();
-                                ins.destroy();
-                                sortable.detachedEditor = ckId;
+//                                if(typeof ins !== 'undefined') {
+                                    ins.getData();
+                                    ins.destroy();
+                                    sortable.detachedEditor = ckId;
+//                                }
                             }
                         },
 
@@ -135,7 +137,6 @@ file that was distributed with this source code.
                         opacity: 0.6,
                         items: 'tr',
                         placeholder: "ui-state-highlight",
-                        helper: 'clone',
                         cursorAt: {left: 5},
 
                         start: sortable.startSort,
