@@ -30,7 +30,7 @@ class ItemSelectType extends AbstractType implements ContainerAwareInterface {
 
     public function getName()
     {
-        return 'itemselect';
+        return 'item_select';
     }
 
     public function setContainer(ContainerInterface $container=null)

@@ -18,7 +18,7 @@ class ItemAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text')
+            ->add('title', 'text_and_references')
             ->add('body', 'textarea', array(
                 'required' => false,
                 'attr' => array(
@@ -80,6 +80,9 @@ class ItemAdmin extends Admin
                 break;
             case 'show':
                 return 'LandregKnowmanBundle:Admin/Item:show.html.twig';
+                break;
+            case 'edit':
+                return 'LandregKnowmanBundle:Admin/Item:edit.html.twig';
                 break;
             default:
                 return parent::getTemplate($name);

@@ -29,7 +29,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
-        - 'LandregKnowmanBundle:Admin/Form:item_select.html.twig'
+        - 'LandregKnowmanBundle:Admin/Form:theme.html.twig'
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"

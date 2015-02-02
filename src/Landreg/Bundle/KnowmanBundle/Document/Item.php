@@ -104,4 +104,23 @@ class Item
     {
         return isset($this->title) ? $this->title : "Item";
     }
+
+    /**
+     * @return mixed
+     */
+    public function getReferencedBy()
+    {
+        return $this->referencedBy;
+    }
+
+    /**
+     * @param mixed $referencedBy
+     */
+    public function setReferencedBy($referencedBy)
+    {
+        $this->referencedBy = $referencedBy;
+    }
+
+
+
 }
