@@ -1,3 +1,10 @@
+body {
+    overflow-x: initial !important;
+}
+
+.ui-sortable tr {
+    cursor: move;
+}
 .lr-usage-container {
     float: left;
     width: 15%;

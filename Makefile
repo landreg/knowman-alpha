@@ -19,7 +19,7 @@ fixtures:
 	php app/console doctrine:phpcr:fixtures:load
 
 assets:
-	php app/console assets:install --symlink
+	php app/console assets:install
 	php app/console assetic:dump --env=dev
 	php app/console assetic:dump --env=prod
 	make fix-permissions
@@ -37,3 +37,8 @@ reset:
 	make source
 	php app/console doctrine:database:drop --force
 	make init
+
+build:
+	make source
+	make assets
+	make update-db

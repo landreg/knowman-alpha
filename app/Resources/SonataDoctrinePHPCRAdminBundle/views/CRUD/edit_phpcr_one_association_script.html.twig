@@ -42,7 +42,6 @@ This code manage the one-to-many association field popup
             dataType: 'html',
             data: { _xml_http_request: true },
             success: function(html) {
-                console.log('added');
                 jQuery('#field_container_{{ id }}').replaceWith(html); // replace the html
                 if(jQuery('input[type="file"]', form).length > 0) {
                     jQuery(form).attr('enctype', 'multipart/form-data');
@@ -61,6 +60,11 @@ This code manage the one-to-many association field popup
     // this function initialize the popup
     // this can be only done this way has popup can be cascaded
     function start_field_retrieve_{{ id }}(link) {
+        if(typeof CKEDITOR !== 'undefined') {
+            for (var j in CKEDITOR.instances) {
+                CKEDITOR.instances[j].updateElement();
+            }
+        }
 
         link.onclick = null;
 

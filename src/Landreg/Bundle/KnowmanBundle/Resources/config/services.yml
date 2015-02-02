@@ -16,7 +16,7 @@ services:
         arguments:
             - ''
             - Landreg\Bundle\KnowmanBundle\Document\Item
-            - 'LandregKnowmanBundle:CRUD'
+            - 'LandregKnowmanBundle:ItemCRUD'
         tags:
             - { name: sonata.admin, manager_type: doctrine_phpcr, group: 'Basic CMS', label: "Item " }
         calls:
@@ -37,7 +37,13 @@ services:
             - [setContainer, ['@service_container']]
         tags:
             - { name: form.type, alias: item_select }
+
     knowman.text.and.references.type:
         class: Landreg\Bundle\KnowmanBundle\Form\Type\TextAndReferencesType
         tags:
             - { name: form.type, alias: text_and_references }
+
+    sonata.admin.doctrine_phpcr.form.collection_type_extension:
+        class: Landreg\Bundle\KnowmanBundle\Form\Extension\CollectionTypeExtension
+        tags:
+            - { name: form.type_extension, alias: sonata_type_collection }
