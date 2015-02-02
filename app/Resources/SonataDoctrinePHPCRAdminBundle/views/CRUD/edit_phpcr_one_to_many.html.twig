@@ -143,11 +143,9 @@ file that was distributed with this source code.
                         stop: sortable.applyPositionValue{{ id }}
                     });
 
-
-
                     // refresh the sortable option when a new element is added
                     jQuery('#sonata-ba-field-container-{{ id }}').bind('sonata.add_element', function() {
-                        apply_position_value_{{ id }}();
+                        sortable.applyPositionValue{{ id }}();
                         jQuery('div#field_container_{{ id }} tbody.sonata-ba-tbody').sortable('refresh');
                     });
 
