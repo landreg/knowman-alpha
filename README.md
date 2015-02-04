@@ -85,6 +85,6 @@ This will set up the database and prepare the assets (html css and javascript).
 Point the server's web-root to the "web" directory in the code checked out.
 Make sure the web server can write to the following directories
 
-app/cache
-app/logs
+* app/cache
+* app/logs
 
